@@ -4,6 +4,9 @@
 
 using namespace std;
 
+/* Function to check if the board is complete */
+bool is_complete(char board[9][9]);
+
 int main() {
 
   char board[9][9];
@@ -34,55 +37,73 @@ int main() {
   }
   cout << "complete." << "\n\n";
 
-  cout << "=================== Question 2 ===================" << "\n\n";
-
-  load_board("easy.dat", board);
-
-  // Should be OK
-  cout << "Putting '1' into I8 is ";
-  if (!make_move("I8", '1', board)) {
-    cout << "NOT ";
-  }
-  cout << "a valid move. The board is:" << '\n';
-  display_board(board);
-
-  // write more tests
-
-  cout << "=================== Question 3 ===================" << "\n\n";
-
-  load_board("easy.dat", board);
-  if (save_board("easy-copy.dat", board)) {
-    cout << "Save board to 'easy-copy.dat' successful." << '\n';
-  } else {
-    cout << "Save board failed." << '\n';
-  }
-  cout << '\n';
-
-  cout << "=================== Question 4 ===================" << "\n\n";
-
-  load_board("easy.dat", board);
-  if (solve_board(board)) {
-    cout << "The 'easy' board has a solution:" << '\n';
-    display_board(board);
-  } else {
-    cout << "A solution cannot be found." << '\n';
-  }
-  cout << '\n';
-
-  load_board("medium.dat", board);
-  if (solve_board(board)) {
-    cout << "The 'medium' board has a solution:" << '\n';
-    display_board(board);
-  } else {
-    cout << "A solution cannot be found." << '\n';
-  }
-  cout << '\n';
-
-  // write more tests
-
-  cout << "=================== Question 5 ===================" << "\n\n";
-
-  // write more tests
-
-  return 0;
+//  cout << "=================== Question 2 ===================" << "\n\n";
+//
+//  load_board("easy.dat", board);
+//
+//  // Should be OK
+//  cout << "Putting '1' into I8 is ";
+//  if (!make_move("I8", '1', board)) {
+//    cout << "NOT ";
+//  }
+//  cout << "a valid move. The board is:" << '\n';
+//  display_board(board);
+//
+//  // write more tests
+//
+//  cout << "=================== Question 3 ===================" << "\n\n";
+//
+//  load_board("easy.dat", board);
+//  if (save_board("easy-copy.dat", board)) {
+//    cout << "Save board to 'easy-copy.dat' successful." << '\n';
+//  } else {
+//    cout << "Save board failed." << '\n';
+//  }
+//  cout << '\n';
+//
+//  cout << "=================== Question 4 ===================" << "\n\n";
+//
+//  load_board("easy.dat", board);
+//  if (solve_board(board)) {
+//    cout << "The 'easy' board has a solution:" << '\n';
+//    display_board(board);
+//  } else {
+//    cout << "A solution cannot be found." << '\n';
+//  }
+//  cout << '\n';
+//
+//  load_board("medium.dat", board);
+//  if (solve_board(board)) {
+//    cout << "The 'medium' board has a solution:" << '\n';
+//    display_board(board);
+//  } else {
+//    cout << "A solution cannot be found." << '\n';
+//  }
+//  cout << '\n';
+//
+//  // write more tests
+//
+//  cout << "=================== Question 5 ===================" << "\n\n";
+//
+//  // write more tests
+//
+//  return 0;
 }
+
+
+/* check if board is complete function */
+bool is_complete(char board[9][9])
+{
+	// Iterate through rows
+	for (int row = 0; row < 9; row++)
+	{
+		// Iterate through columns
+		for (int col = 0; col < 9; col++)
+		{
+			if (!isdigit(board[row][col]))
+				return false;
+		}
+	}
+	return true;
+}
+/* End of function Definirion */
