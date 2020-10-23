@@ -105,22 +105,21 @@ bool make_move(const char* position, const char digit, char board[9][9])
 	// convert characters to integers indexed from 0
 	int guess = (int)(digit - 48);
 	int col_guess = (int)(position[0] - 65); 
-	int row_guess = (int)(position[1] - 49); A
-	int i, j;
+	int row_guess = (int)(position[1] - 49); 
 	cout << "guessing " << col_guess+1 << " " << row_guess+1 << endl;	
 	// check if the board is filled at the given coordinates
 	if (board[row_guess][col_guess] != '.')
 		return false;
 	
 	// check if digit appears in row
-	for (i = 0; i < 9; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		if (board[col_guess][i] == digit)
 			return false;
 	}
 
 	// check if digit appears in column
-	for (i = 0; i < 9; i++)
+	for (int i = 0; i < 9; i++)
 	{
 		if (board[i][row_guess] == digit)
 			return false;
@@ -128,9 +127,9 @@ bool make_move(const char* position, const char digit, char board[9][9])
 
 	/* check if digit appears in the box without re-checking columns or rows.
 	check up and to the left */
-	for (i = 1; i <= (row_guess % 3); i++)
+	for (int i = 1; i <= (row_guess % 3); i++)
 	{
-		for (j = 1; j <= (col_guess % 3); j++)
+		for (int j = 1; j <= (col_guess % 3); j++)
 		{
 			cout << "checked up left " << col_guess -j + 1 << ',' << row_guess - i + 1 << endl;
 			if (board[col_guess - j][row_guess - i] == digit)
@@ -139,9 +138,9 @@ bool make_move(const char* position, const char digit, char board[9][9])
 	}
 
 	// check down and to the left
-	for (i = 1; i <= (row_guess % 3); i++)
+	for (int i = 1; i <= (row_guess % 3); i++)
 	{
-		for (j = 1; j <= (2 - (col_guess % 3)); j++)
+		for (int j = 1; j <= (2 - (col_guess % 3)); j++)
 		{
 			cout << "checked down right " << col_guess + j + 1 << ',' << row_guess - i + 1 << endl;
 			if (board[col_guess + j][row_guess - i] == digit)
@@ -150,9 +149,9 @@ bool make_move(const char* position, const char digit, char board[9][9])
 	}
 
 	//check up and to the right 
-	for (i = 1; i <= (2 - (row_guess % 3)); i++)
+	for (int i = 1; i <= (2 - (row_guess % 3)); i++)
 	{
-		for (j = 1; j <= (col_guess % 3); j++)
+		for (int j = 1; j <= (col_guess % 3); j++)
 		{
 			cout << "checked up right " << col_guess - j + 1 << ',' << row_guess + i + 1 << endl;
 			if (board[col_guess - j][row_guess + i] == digit)
@@ -161,9 +160,9 @@ bool make_move(const char* position, const char digit, char board[9][9])
 	}
 	
 	// check down and to the right
-	for (i = 1; i <= (2 - (row_guess % 3)); i++)
+	for (int i = 1; i <= (2 - (row_guess % 3)); i++)
 	{
-		for (j = 1; j <= (2 - (col_guess % 3)); j++)
+		for (int j = 1; j <= (2 - (col_guess % 3)); j++)
 		{
 			cout << "checked down right " << col_guess + j + 1 << ',' << row_guess + i + 1 << endl;
 			if (board[col_guess + j][row_guess + i] == guess)
