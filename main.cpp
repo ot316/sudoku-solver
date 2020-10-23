@@ -4,9 +4,6 @@
 
 using namespace std;
 
-/* Function to check if the board is complete */
-bool is_complete(char board[9][9]);
-
 int main() {
 
   char board[9][9];
@@ -37,20 +34,20 @@ int main() {
   }
   cout << "complete." << "\n\n";
 
-//  cout << "=================== Question 2 ===================" << "\n\n";
-//
-//  load_board("easy.dat", board);
-//
-//  // Should be OK
-//  cout << "Putting '1' into I8 is ";
-//  if (!make_move("I8", '1', board)) {
-//    cout << "NOT ";
-//  }
-//  cout << "a valid move. The board is:" << '\n';
-//  display_board(board);
-//
-//  // write more tests
-//
+  cout << "=================== Question 2 ===================" << "\n\n";
+
+  load_board("easy.dat", board);
+
+  // Should be OK
+  cout << "Putting '9' into F5 is ";
+  if (!make_move("F5", '9', board)) {
+    cout << "NOT ";
+  }
+  cout << "a valid move. The board is:" << '\n';
+  display_board(board);
+
+  // write more tests
+
 //  cout << "=================== Question 3 ===================" << "\n\n";
 //
 //  load_board("easy.dat", board);
@@ -91,19 +88,3 @@ int main() {
 }
 
 
-/* check if board is complete function */
-bool is_complete(char board[9][9])
-{
-	// Iterate through rows
-	for (int row = 0; row < 9; row++)
-	{
-		// Iterate through columns
-		for (int col = 0; col < 9; col++)
-		{
-			if (!isdigit(board[row][col]))
-				return false;
-		}
-	}
-	return true;
-}
-/* End of function Definirion */
