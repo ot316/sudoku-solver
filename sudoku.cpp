@@ -13,68 +13,68 @@ using namespace std;
 /* pre-supplied function to load a Sudoku board from a file */
 void load_board(const char* filename, char board[9][9]) {
 
-  cout << "Loading Sudoku board from file '" << filename << "'... ";
+	cout << "Loading Sudoku board from file '" << filename << "'... ";
 
-  ifstream in(filename);
-  if (!in) {
-    cout << "Failed!" << '\n';
-  }
-  assert(in);
+	ifstream in(filename);
+	if (!in) {
+		cout << "Failed!" << '\n';
+	}
+	assert(in);
 
-  char buffer[512];
+	char buffer[512];
 
-  int row = 0;
-  in.getline(buffer,512);
-  while (in && row < 9) {
-    for (int n=0; n<9; n++) {
-      assert(buffer[n] == '.' || isdigit(buffer[n]));
-      board[row][n] = buffer[n];
-    }
-    row++;
-    in.getline(buffer,512);
-  }
+	int row = 0;
+	in.getline(buffer,512);
+	while (in && row < 9) {
+		for (int n=0; n<9; n++) {
+			assert(buffer[n] == '.' || isdigit(buffer[n]));
+			board[row][n] = buffer[n];
+		}
+		row++;
+		in.getline(buffer,512);
+	}
 
-  cout << ((row == 9) ? "Success!" : "Failed!") << '\n';
-  assert(row == 9);
+	cout << ((row == 9) ? "Success!" : "Failed!") << '\n';
+	assert(row == 9);
 }
 
 /* internal helper function */
 void print_frame(int row) {
-  if (!(row % 3)) {
-    cout << "  +===========+===========+===========+" << '\n';
-  } else {
-    cout << "  +---+---+---+---+---+---+---+---+---+" << '\n';
-  }
+	if (!(row % 3)) {
+		cout << "  +===========+===========+===========+" << '\n';
+	} else {
+		cout << "  +---+---+---+---+---+---+---+---+---+" << '\n';
+	}
 }
 
 /* internal helper function */
 void print_row(const char* data, int row) {
-  cout << (char) ('A' + row) << " ";
-  for (int i=0; i<9; i++) {
-    cout << ( (i % 3) ? ':' : '|' ) << " ";
-    cout << ( (data[i]=='.') ? ' ' : data[i]) << " ";
-  }
-  cout << "|" << '\n';
+	cout << (char) ('A' + row) << " ";
+	for (int i=0; i<9; i++) {
+		cout << ( (i % 3) ? ':' : '|' ) << " ";
+		cout << ( (data[i]=='.') ? ' ' : data[i]) << " ";
+	}
+	cout << "|" << '\n';
 }
 
 /* pre-supplied function to display a Sudoku board */
 void display_board(const char board[9][9]) {
-  cout << "    ";
-  for (int r=0; r<9; r++) {
-    cout << (char) ('1'+r) << "   ";
-  }
-  cout << '\n';
-  for (int r=0; r<9; r++) {
-    print_frame(r);
-    print_row(board[r],r);
-  }
-  print_frame(9);
+	cout << "    ";
+	for (int r=0; r<9; r++) {
+		cout << (char) ('1'+r) << "   ";
+	}
+	cout << '\n';
+	for (int r=0; r<9; r++) {
+		print_frame(r);
+		print_row(board[r],r);
+	}
+	print_frame(9);
 }
 
 /* add your functions here */
 
 /*========================= QUESTION 1 =============================
-check if board is complete function */
+  check if board is complete */
 bool is_complete(char board[9][9])
 {
 	// Iterate through rows
@@ -93,7 +93,7 @@ bool is_complete(char board[9][9])
 
 
 /*========================= QUESTION 2 =============================
-check if a move is valid */
+  check if a move is valid */
 bool make_move(const char* position, const char digit, char board[9][9])
 {
 	// test input is within range
@@ -101,16 +101,16 @@ bool make_move(const char* position, const char digit, char board[9][9])
 		return false;
 	if (position[1] < '1' || position[1] > '9')
 		return false;
-	
+
 	// convert characters to integers indexed from 0
-	int guess = (int)(digit - 48);
+	//int guess = (int)(digit - 48);
 	int col_guess = (int)(position[0] - 65); 
 	int row_guess = (int)(position[1] - 49); 
-	cout << "guessing " << col_guess+1 << " " << row_guess+1 << endl;	
+	cout << "guessing " << digit << " at " << col_guess+1 << " " << row_guess+1 << endl;	
 	// check if the board is filled at the given coordinates
-	if (board[row_guess][col_guess] != '.')
+	if (board[col_guess][row_guess] != '.')
 		return false;
-	
+
 	// check if digit appears in row
 	for (int i = 0; i < 9; i++)
 	{
@@ -125,15 +125,16 @@ bool make_move(const char* position, const char digit, char board[9][9])
 			return false;
 	}
 
+
 	/* check if digit appears in the box without re-checking columns or rows.
-	check up and to the left */
+	   check up and to the left */
 	for (int i = 1; i <= (row_guess % 3); i++)
 	{
 		for (int j = 1; j <= (col_guess % 3); j++)
 		{
 			cout << "checked up left " << col_guess -j + 1 << ',' << row_guess - i + 1 << endl;
-			if (board[col_guess - j][row_guess - i] == digit)
-				return false;
+			if (board[col_guess - j][row_guess - i] == digit){
+				return false;}
 		}
 	}
 
@@ -143,8 +144,8 @@ bool make_move(const char* position, const char digit, char board[9][9])
 		for (int j = 1; j <= (2 - (col_guess % 3)); j++)
 		{
 			cout << "checked down right " << col_guess + j + 1 << ',' << row_guess - i + 1 << endl;
-			if (board[col_guess + j][row_guess - i] == digit)
-				return false;
+			if (board[col_guess + j][row_guess - i] == digit){
+				return false;}
 		}
 	}
 
@@ -154,43 +155,111 @@ bool make_move(const char* position, const char digit, char board[9][9])
 		for (int j = 1; j <= (col_guess % 3); j++)
 		{
 			cout << "checked up right " << col_guess - j + 1 << ',' << row_guess + i + 1 << endl;
-			if (board[col_guess - j][row_guess + i] == digit)
-				return false;
+			if (board[col_guess - j][row_guess + i] == digit){
+				return false;}
 		}
 	}
-	
+
 	// check down and to the right
 	for (int i = 1; i <= (2 - (row_guess % 3)); i++)
 	{
 		for (int j = 1; j <= (2 - (col_guess % 3)); j++)
 		{
 			cout << "checked down right " << col_guess + j + 1 << ',' << row_guess + i + 1 << endl;
-			if (board[col_guess + j][row_guess + i] == guess)
-				return false;
+			if (board[col_guess + j][row_guess + i] == digit){
+				return false;}
 		}
 	}
 
 	// if all checks have passed return true
 	board[col_guess][row_guess] = digit;
+	cout << "writing: " << digit << " to " << col_guess+1 << "," <<  row_guess+1 << endl; 
 	return true;
 }
 /* End of function Definition */
 
 
-/*========================= QUESTION 3 =============================*/
-/* save board as filename */
-bool save_board()
+/*========================= QUESTION 3 =============================
+  save board as filename */
+bool save_board(const char* filename, char board[9][9])
 {
-	return false;
+	try 
+	{
+		ofstream output_file_stream;
+		output_file_stream.open(filename);
+
+		// check for failure
+		if (output_file_stream.fail())
+			return false;
+
+		// add lines to output file
+		for (int i = 0; i < 9; i++)
+		{
+			for (int j = 0; j < 9; j++)
+			{
+				output_file_stream << board[i][j];
+			}
+			output_file_stream << endl;
+		}
+
+		return true;
+	}
+
+	catch (int n)
+	{return false;}
 }
-	/* End of function Definition */
+/* End of function Definition */
 
 
 /*========================= QUESTION 4 =============================*/
 /* solve board and return completed board */
-bool solve_board()
+bool solve_board(char board[9][9])
 {
+	char guess[2];
+	if (!find_empty(guess, board))
+		return true;
+	
+	for (char digit = '1'; digit <= '9'; digit++)
+	{
+		if (make_move(guess, digit, board))
+		{
+			display_board(board);
+			if (solve_board(board))
+				return true;
+
+			set_zero(guess, board);
+		}
+	}
 	return false;
 }
 /* End of function Definition */
 
+/* helper function for question 4, finds and returns the coordinates of
+the first empty space, returning false if one cannot be found */ 
+bool find_empty(char position[2], char board[9][9])
+{
+	// Iterate through rows
+	for (int row_index = 0; row_index < 9; row_index++)
+	{
+		// Iterate through columns
+		for (int col_index = 0; col_index < 9; col_index++)
+		{
+			if (!isdigit(board[row_index][col_index]))
+			{
+				position[0] = row_index + 65;
+				position[1] = col_index + 49;
+				cout << "found empty: " << position[0] << " " << position[1] << endl;
+				return true;
+			}
+		}
+	}
+	return false;
+}
+/* End of function Definition */
+
+void set_zero(char position[2], char board[9][9])
+{
+	board[position[0] - 65][position[1]-49] = '.';
+	cout << "backtracking" << endl;
+	
+}

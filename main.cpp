@@ -39,8 +39,8 @@ int main() {
   load_board("easy.dat", board);
 
   // Should be OK
-  cout << "Putting '9' into F5 is ";
-  if (!make_move("F5", '9', board)) {
+  cout << "Putting '4' into A1 is ";
+  if (!make_move("A1", '4', board)) {
     cout << "NOT ";
   }
   cout << "a valid move. The board is:" << '\n';
@@ -48,43 +48,43 @@ int main() {
 
   // write more tests
 
-//  cout << "=================== Question 3 ===================" << "\n\n";
-//
-//  load_board("easy.dat", board);
-//  if (save_board("easy-copy.dat", board)) {
-//    cout << "Save board to 'easy-copy.dat' successful." << '\n';
-//  } else {
-//    cout << "Save board failed." << '\n';
-//  }
-//  cout << '\n';
-//
-//  cout << "=================== Question 4 ===================" << "\n\n";
-//
-//  load_board("easy.dat", board);
-//  if (solve_board(board)) {
-//    cout << "The 'easy' board has a solution:" << '\n';
-//    display_board(board);
-//  } else {
-//    cout << "A solution cannot be found." << '\n';
-//  }
-//  cout << '\n';
-//
-//  load_board("medium.dat", board);
-//  if (solve_board(board)) {
-//    cout << "The 'medium' board has a solution:" << '\n';
-//    display_board(board);
-//  } else {
-//    cout << "A solution cannot be found." << '\n';
-//  }
-//  cout << '\n';
-//
-//  // write more tests
-//
-//  cout << "=================== Question 5 ===================" << "\n\n";
-//
-//  // write more tests
-//
-//  return 0;
+  cout << "=================== Question 3 ===================" << "\n\n";
+
+  load_board("easy.dat", board);
+  if (save_board("easy-copy.dat", board)) {
+    cout << "Save board to 'easy-copy.dat' successful." << '\n';
+  } else {
+    cout << "Save board failed." << '\n';
+  }
+  cout << '\n';
+
+  cout << "=================== Question 4 ===================" << "\n\n";
+
+  load_board("easy.dat", board);
+  if (solve_board(board)) {
+    cout << "The 'easy' board has a solution:" << '\n';
+    display_board(board);
+  } else {
+    cout << "A solution cannot be found." << '\n';
+  }
+  cout << '\n';
+
+  load_board("medium.dat", board);
+  if (solve_board(board)) {
+    cout << "The 'medium' board has a solution:" << '\n';
+    display_board(board);
+  } else {
+    cout << "A solution cannot be found." << '\n';
+  }
+  cout << '\n';
+
+  // write more tests
+
+  cout << "=================== Question 5 ===================" << "\n\n";
+
+  // write more tests
+
+  return 0;
 }
 
 
