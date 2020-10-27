@@ -1,5 +1,5 @@
 execute: main.o sudoku.o
-	g++ -Wall -g main.o sudoku.o -o main
+	g++ -Wall -g main.o sudoku.o -o sudoku
 
 main.o: main.cpp sudoku.h
 	g++ -Wall -g -c main.cpp

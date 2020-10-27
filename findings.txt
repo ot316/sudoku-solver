@@ -1,1 +1,8 @@
 Summarise your findings here (see specification).
+
+mystery1.dat is the very hard puzzle as it takes a very long time to run
+
+mystery2.dat is impossible to complete using a recursive backtracking algorithm
+
+mystery3.dat is the hard puzzle as it takes less time to tun than mystery1.dat
+
