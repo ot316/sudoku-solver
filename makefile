@@ -1,4 +1,4 @@
-execute: main.o sudoku.o
+sduoku: main.o sudoku.o
 	g++ -Wall -g main.o sudoku.o -o sudoku
 
 main.o: main.cpp sudoku.h
@@ -8,4 +8,4 @@ sudoku.o: sudoku.cpp sudoku.h
 	g++ -Wall -g -c sudoku.cpp
 
 clean:
-	rm -f *.o execute
+	rm -f *.o sudoku
