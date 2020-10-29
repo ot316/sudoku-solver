@@ -191,7 +191,7 @@ bool solve_board(char board[9][9]) {
 	for (char digit = '1'; digit <= '9'; digit++) {
 		if (make_move(guess, digit, board)) {
 			if (solve_board(board))
-				return true;
+				return false;
 
 			board[guess[0] - 65][guess[1]-49] = '.';
 		}
