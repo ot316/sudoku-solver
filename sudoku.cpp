@@ -80,7 +80,7 @@ bool is_complete(char board[9][9]) {
 	for (int row_index = 0; row_index < 9; row_index++)	{
 		// Iterate through columns
 		for (int col_index = 0; col_index < 9; col_index++) {
-			if (board[row_index][col_index] > 57 || board[row_index][col_index] < 49)
+			if (board[row_index][col_index] > '9' || board[row_index][col_index] < '1')
 				return false;
 		}
 	}
@@ -119,7 +119,7 @@ bool make_move(const char* position, const char digit, char board[9][9]) {
 			return false;
 	}
 
-	/* check if digit appears in the box without re-checking columns or rows.
+	/* check if digit appears in the 3 x 3 sub grid without re-checking columns or rows.
 	   check up and to the left */
 	for (int i = 1; i <= (row_guess % 3); i++) {
 		for (int j = 1; j <= (col_guess % 3); j++) {
@@ -166,8 +166,10 @@ bool save_board(const char* filename, char board[9][9]) {
 	 output_file_stream.open(filename);
 
 	 // check for failure
-	 if (output_file_stream.fail())
+	 if (!output_file_stream)
 		return false;
+
+	 assert(output_file_stream);
 
 	 // add lines to output file
 	 for (int i = 0; i < 9; i++) {
@@ -191,9 +193,10 @@ bool solve_board(char board[9][9]) {
 	for (char digit = '1'; digit <= '9'; digit++) {
 		if (make_move(guess, digit, board)) {
 			if (solve_board(board))
-				return false;
+				return true;
 
 			board[guess[0] - 65][guess[1]-49] = '.';
+			cout << "backtracking\n";
 		}
 	}
 	return false;
