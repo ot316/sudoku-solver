@@ -2,8 +2,10 @@ Summarise your findings here (see specification).
 
 I have used a depth-first recursive backtracking algorithm that iterates from the top left corner of the puzzle, writing the first value that is logically valid and moving on to the next empty square. Should no value be logically valid, the algorithm 'backtracks' by returning to the previous empty square and continuing to check for more values, backtracking again if necessary until a valid solution is found.
 
+Solving a sudoku puzzle is an NP complete problem and therefore a brute force approach such as backtracking may be considered to be acceptable.
+
 The mystery2.dat puzzle fails to find a solution. As the backtracking algorithm checks every possible combination, it can be deduced that there is no valid solution.
 
-I used cout to print the word backtracking when the algorithm backtracked. I piped the output to $ grep "backtracking" -c in order to count the number of backtracks. The easy puzzle took 2116 backtracks to solve. The medium puzzle took 15605 backtracks. mystery3.dat took 14076 backtracking calls to solve. By comparison, mystery1.dat made 423604 backtracking calls. This means the mystery1.dat is the very hard puzzle and mystery3.dat is the hard puzzle.
+I used cout to print the word backtracking when the algorithm backtracked. I piped the output to $ grep "backtracking" -c in order to count the number of backtracks. The easy puzzle took 2116 backtracks to solve. The medium puzzle took 15605 backtracks. mystery3.dat took 14076 backtracking calls to solve. By comparison, mystery1.dat made 423604 backtracking calls. This must mean that mystery1.dat is the very hard puzzle and mystery3.dat is the hard puzzle.
 
-Puzzles can be designed to be particularly difficult to solve using a recursive backtracking algorithm, assuming the order in which the algorithm progresses through the puzzle is known. They can be designed such that the algorithm has to spend more time to fill in a large area of the grid before a solution fails and it must restart. 
+Puzzles can be designed to be particularly difficult to solve using a recursive backtracking algorithm, assuming the order in which the algorithm progresses through the puzzle is known. They can be designed such that the algorithm has to spend more time to fill in a large area of the grid before a solution fails and it must restart, this is why more backtracking is required to complete the mystery1.dat file. These results would not be the same if the algorithm worked from the bottom to the top rather than the top to the bottom.

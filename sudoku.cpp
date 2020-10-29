@@ -104,7 +104,7 @@ bool make_move(const char* position, const char digit, char board[9][9]) {
 	int row_guess = (int)(position[1] - 49); 
 	
 	// check if the board is filled at the given coordinates
-	if (board[col_guess][row_guess] != '.')
+	if (board[col_guess][row_guess] != '.' && board[col_guess][row_guess] != '0')
 		return false;
 
 	// check if digit appears in row
@@ -196,7 +196,6 @@ bool solve_board(char board[9][9]) {
 				return true;
 
 			board[guess[0] - 65][guess[1]-49] = '.';
-			cout << "backtracking\n";
 		}
 	}
 	return false;
@@ -210,7 +209,7 @@ bool find_empty(char position[2], char board[9][9]) {
 	for (int row_index = 0; row_index < 9; row_index++) {
 		// Iterate through columns
 		for (int col_index = 0; col_index < 9; col_index++) {
-			if (!isdigit(board[row_index][col_index])) {
+			if (board[row_index][col_index] > '9' || board[row_index][col_index] < '1') {
 				position[0] = row_index + 65;
 				position[1] = col_index + 49;
 				return true;
