@@ -80,7 +80,7 @@ bool is_complete(char board[9][9]) {
 	for (int row_index = 0; row_index < 9; row_index++)	{
 		// Iterate through columns
 		for (int col_index = 0; col_index < 9; col_index++) {
-			if (!isdigit(board[row_index][col_index]))
+			if (!isdigit(board[row_index][col_index] || board[row_index][col_index] == 0))
 				return false;
 		}
 	}
