@@ -15,5 +15,3 @@ bool solve_board(char board[9][9]);
 
 /* helper function to find the coordinates of the first empty square */
 bool find_empty(char position[2], char board[9][9]);
-
-void set_zero(char position[2], char board[9][9]);
