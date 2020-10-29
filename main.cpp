@@ -122,7 +122,7 @@ int main() {
 	cout << "=================== Question 5 ===================" << "\n\n";
 
 	/* write more tests
-	check the 3 mystery functions */
+	check the 3 mystery functions, bash was used to analyse the output*/
 
 	load_board("mystery1.dat", board);
 	if (solve_board(board)) {
